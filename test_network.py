@@ -21,7 +21,7 @@ if __name__=="__main__":
     input_data.read_dataset(fname_img, fname_lbl)
 
     with tf.Session() as sess:
-        saver = tf.train.import_meta_graph('fminst-diff-kernels.meta')
+        saver = tf.train.import_meta_graph('fmnist-same-kernels.meta')
         saver.restore(sess, tf.train.latest_checkpoint('./'))
         graph = tf.get_default_graph()
         x = graph.get_tensor_by_name("x:0")

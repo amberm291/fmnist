@@ -151,7 +151,7 @@ class trainNetwork:
                     overall_true.extend(list(y_true_cls.eval({x: x_train, y_true: y_train})))
                 print "epoch %d, training accuracy %f"%(i, self.calc_accuracy(overall_pred, overall_true))
                 self.input_data.reset_index()
-            saver.save(sess, "fminst-diff-kernels")
+            saver.save(sess, "fmnist-diff-kernels")
 
     def calc_accuracy(self, overall_pred, overall_true):
         count = 0
