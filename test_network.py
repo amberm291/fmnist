@@ -13,6 +13,18 @@ def calc_accuracy(overall_pred, overall_true):
         if overall_pred[i] == overall_true[i]: count += 1
     return float(count)/len(overall_pred)
 
+def confusion_matrix(overall_pred, overall_true):
+    count_dict = {}
+    for i in xrange(len(overall_true)):
+        true_label = overall_true[i]
+        pred_label = overall_pred[i]
+        if true_label not in count_dict: count_dict[true_label] = {}
+        if pred_label not in count_dict[true_label]: count_dict[true_label][pred_label] = 0
+        count_dict[true_label][pred_label] += 1
+
+    for true_label in count_dict:
+        print true_label, count_dict[true_label]
+
 if __name__=="__main__":
     train_dir = "../../data/fmnist/"
     fname_img = "t10k-images-idx3-ubyte"
@@ -34,4 +46,4 @@ if __name__=="__main__":
         feed_test = {x: test_samples, y_true: test_labels}
         overall_pred = list(y_pred_cls.eval(feed_test))
         overall_true = list(y_true_cls.eval(feed_test))
-        print calc_accuracy(overall_pred, overall_true)
+        print confusion_matrix(overall_pred, overall_true)
